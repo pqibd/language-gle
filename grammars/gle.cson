@@ -11,6 +11,10 @@
 #       5. Parenteses pairing? Maybe not necessary
 #       6. Clean garbage
 #       7. '\' in string
+#       8. Variable highlight in subroutine definition line.
+#       9. Add `d1`
+#       10. Add some missing operators
+#       11. 'box', 'start', 'end'
 'patterns': [
   {
     'include': '#line_comment'
@@ -111,33 +115,6 @@
     }
   'builtin_functions':
     'patterns': [
-      # {  # names with \\ is not working.  Aug. 26, 2020. Peng Qi.
-      #    # 'width' has conflication with 'width' in 'keyword_option'
-      #   'begin':'\\b(abs|acos|acosh|acot|acoth|acsc|acsch|arg|arg\\$|asec|
-      #                 asech|asin|asinh|atan|atanh|atn|cos|cosh|cot|coth|csc|
-      #                 csch|dataxvalue|datayvalue|date\\$|device\\$|eval|
-      #                 exp|\\\expr|file\\$|fix|format\\$|getenv|height|int|left|
-      #                 len|log|log10|nargs|ndata|ndatasets|not|num1\\$|num\\$|
-      #                 pageheight|pagewidth|path\\$|point[xy]|pos|pt[xy]|rgb|
-      #                 rgba|rgb255|rgba255|right\\$|rnd|sdiv|sec|sech|seg\\$|sgn|
-      #                 sin|sinh|sqr|sqrt|tan|tanh|tdepth|theight|time\\$|todeg|
-      #                 torad|twidth|val|width|xbar|[xy]end|[xy]g|[xy]g3d|[xy]pos|
-      #                 xy2angle)\\b(\\()'
-      #   'beginCaptures':
-      #     '1':
-      #       'name': 'support.function.builtin.gle'
-      #     '2':
-      #       'name': 'punctuation.definition.end.bracket.round.gle'
-      #   'end': '\\)'
-      #   'endCaptures':
-      #     '0':
-      #       'name': 'punctuation.definition.end.bracket.round.gle'
-      #   'patterns': [
-      #     {
-      #       'include': '$self'
-      #     }
-      #   ]
-      # }
       {
         'match': '\\b(abs|acos|acosh|acot|acoth|acsc|acsch|arg|arg\\$|asec|asech|asin|asinh|atan|atanh|atn|cos|cosh|cot|coth|csc|csch|dataxvalue|datayvalue|date\\$|device\\$|eval|exp|\\\expr|file\\$|fix|format\\$|getenv|height|int|left|len|log|log10|nargs|ndata|ndatasets|not|num1\\$|num\\$|pageheight|pagewidth|path\\$|point[xy]|pos|pt[xy]|rgb|rgba|rgb255|rgba255|right\\$|rnd|sdiv|sec|sech|seg\\$|sgn|sin|sinh|sqr|sqrt|tan|tanh|tdepth|theight|time\\$|todeg|torad|twidth|val|width|xbar|[xy]end|[xy]g|[xy]g3d|[xy]pos|xy2angle)\\b'
         'name': 'support.function.builtin.gle'
@@ -171,7 +148,6 @@
         'name': 'support.function.section.gle'
       }
     ]
-
   'regexp':
     'patterns': [
       {
