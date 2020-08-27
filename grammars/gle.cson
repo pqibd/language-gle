@@ -115,8 +115,8 @@
     }
   'builtin_functions':
     'patterns': [
-      {
-        'match': '\\b(abs|acos|acosh|acot|acoth|acsc|acsch|arg|arg\\$|asec|asech|asin|asinh|atan|atanh|atn|cos|cosh|cot|coth|csc|csch|dataxvalue|datayvalue|date\\$|device\\$|eval|exp|\\\expr|file\\$|fix|format\\$|getenv|height|int|left|len|log|log10|nargs|ndata|ndatasets|not|num1\\$|num\\$|pageheight|pagewidth|path\\$|point[xy]|pos|pt[xy]|rgb|rgba|rgb255|rgba255|right\\$|rnd|sdiv|sec|sech|seg\\$|sgn|sin|sinh|sqr|sqrt|tan|tanh|tdepth|theight|time\\$|todeg|torad|twidth|val|width|xbar|[xy]end|[xy]g|[xy]g3d|[xy]pos|xy2angle)\\b'
+      {  # `\expr` is not working
+        'match': '\\b(abs|acos|acosh|acot|acoth|acsc|acsch|arg|arg\\$|asec|asech|asin|asinh|atan|atanh|atn|cos|cosh|cot|coth|csc|csch|dataxvalue|datayvalue|date\\$|device\\$|eval|exp|\\\expr|file\\$|fix|format\\$|getenv|height|int|left|len|log|log10|nargs|ndata|ndatasets|not|num1\\$|num\\$|pageheight|pagewidth|path\\$|point[xy]|pos|pt[xy]|rgb|rgba|rgb255|rgba255|right\\$|rnd|sdiv|sec|sech|seg\\$|sgn|sin|sinh|sqr|sqrt|tan|tanh|tdepth|theight|time\\$|todeg|torad|twidth|val|width|xbar|[xy]end|[xy]g|[xy]g3d|[xy]pos|xy2angle)(?=\\()'
         'name': 'support.function.builtin.gle'
       }
     ]
@@ -130,7 +130,7 @@
   'keyword_command':
     'patterns': [
       {
-        'match':'\\b(aline|rline|line|amove|rmove|arc|arcto|bezier|circle|closepath|curve|ellipse|ellipse_arc|ellipse_narc|grestore|gsave|join|rbezier|reverse|save|text|write|bar|size|title|xaxis|yaxis|x2axis|y2axis|hscale|vscale|xlabels|ylabels|x2labels|y2labels|xnames|ynames|x2names|y2names|xplaces|yplaces|x2places|y2places|xside|yside|x2side|y2side|xticks|yticks|xsubticks|ysubticks|x2subticks|y2subticks|xtitle|ytitle|x2title|y2title)\\b'
+        'match':'\\b(aline|rline|line|amove|rmove|arc|arcto|bezier|box|circle|closepath|curve|ellipse|ellipse_arc|ellipse_narc|grestore|gsave|join|rbezier|reverse|save|text|write|bar|size|title|xaxis|yaxis|x2axis|y2axis|hscale|vscale|xlabels|ylabels|x2labels|y2labels|xnames|ynames|x2names|y2names|xplaces|yplaces|x2places|y2places|xside|yside|x2side|y2side|xticks|yticks|xsubticks|ysubticks|x2subticks|y2subticks|xtitle|ytitle|x2title|y2title)\\b'
         'name': 'support.class.gle'
       }
     ]
@@ -138,13 +138,13 @@
     'patterns': [
       {
         'match':'\\s(width|err|herr|errwidth|herrwidth|errup|herrup|errdown|herrdown|hei|color|dashlen|font|fontlwidth|just|add|nobox|name|arrow|stroke|fill|justify|cap|lstyle|lwidth|from|dist|key|xmin|ymin|xmax|ymax|nomiss|smooth|smoothm|dsubticks|dpoints|nticks|dticks|font|shift|step|offset|position|marker|msize|mscale|ignore|alabeldist|alabelscale|arrowangle|arrowsize|arrowstyle|atitledist|atitlescale|background|cap|pattern|texscale|titlescale|ticksscale)\\s'
-        'name': 'support.variable.gle'
+        'name': 'variable.parameter.function.gle'
       }
     ]
   'keyword_blockname':
     'patterns': [
       {
-        'match':'\\b(box|clip|origin|path|marker|rotate|scale|table|text|translate)\\b'
+        'match':'\\s\\b(box|clip|origin|path|marker|rotate|scale|table|text|translate)\\b'
         'name': 'support.function.section.gle'
       }
     ]
