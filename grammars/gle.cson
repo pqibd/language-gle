@@ -137,7 +137,7 @@
   'keyword_option':
     'patterns': [
       {
-        'match':'\\s(width|err|herr|errwidth|herrwidth|errup|herrup|errdown|herrdown|hei|color|dashlen|font|fontlwidth|just|add|nobox|name|arrow|stroke|fill|justify|cap|lstyle|lwidth|from|dist|key|xmin|ymin|xmax|ymax|nomiss|smooth|smoothm|dsubticks|dpoints|nticks|dticks|font|shift|offset|position|marker|msize|mscale|ignore|alabeldist|alabelscale|arrowangle|arrowsize|arrowstyle|atitledist|atitlescale|background|cap|pattern|texscale|titlescale|ticksscale)\\s'
+        'match':'\\s(width|err|herr|errwidth|herrwidth|errup|herrup|errdown|herrdown|hei|color|dashlen|font|fontlwidth|just|add|nobox|name|arrow|stroke|fill|justify|cap|lstyle|lwidth|from|dist|key|xmin|ymin|xmax|ymax|nomiss|smooth|smoothm|dsubticks|dpoints|nticks|dticks|font|shift|step|offset|position|marker|msize|mscale|ignore|alabeldist|alabelscale|arrowangle|arrowsize|arrowstyle|atitledist|atitlescale|background|cap|pattern|texscale|titlescale|ticksscale)\\s'
         'name': 'support.variable.gle'
       }
     ]
