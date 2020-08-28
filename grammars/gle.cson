@@ -271,23 +271,23 @@
         'begin': '"'
         'end': '"'
         'name': 'string.quoted.double.gle'
-        'patterns': [
-          {
-            'match': '\\\\.'
-            'name': 'constant.character.escape.gle'
-          }
-        ]
+        # 'patterns': [
+        #   {
+        #     'match': '\\\\.'
+        #     'name': 'constant.character.escape.gle'
+        #   }
+        # ]
       }
       {
         'begin': '\''
         'end': '\''
         'name': 'string.quoted.single.gle'
-        'patterns': [
-          {
-            'match': '\\\\.'
-            'name': 'constant.character.escape.gle'
-          }
-        ]
+        # 'patterns': [
+        #   {
+        #     'match': '\\\\.'
+        #     'name': 'constant.character.escape.gle'
+        #   }
+        # ]
       }
     ]
   'regexp_specialcharacters':
