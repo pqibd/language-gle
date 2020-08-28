@@ -1,6 +1,7 @@
 'scopeName': 'source.gle'
 'fileTypes': [
-  'gle'
+  'gle',
+  'icl'
 ]
 'name': 'gle-Script'
 'firstLineMatch': '#!.*\\b(gle)\\b'
@@ -36,6 +37,9 @@
   }
   {
     'include': '#keyword_control'
+  }
+  {
+    'include': '#keyword_control2'
   }
   {
     'include': '#keyword_command'
@@ -123,7 +127,14 @@
   'keyword_control':
     'patterns': [
       {
-        'match': '\\b(begin|bigfile|both|data|define|else|end|if|include|for|fullsize|let|next|postscript|return|start|set|to|then|while)\\b'
+        'match': '\\b(begin|bigfile|data|define|else|if|include|for|fullsize|let|next|postscript|return|set|to|then|while)\\b'
+        'name': 'keyword.control.gle'
+      }
+    ]
+  'keyword_control2':  # more strict for some control keywords, because they are keywords for other purposes too. 
+    'patterns': [
+      {
+        'match': '^\\s*\\b(both|end|start)\\b'
         'name': 'keyword.control.gle'
       }
     ]
@@ -268,8 +279,9 @@
   'string':
     'patterns': [
       {
-        'begin': '"'
-        'end': '"'
+        # 'begin': '"'
+        # 'end': '"'
+        'match': '".*"'
         'name': 'string.quoted.double.gle'
         # 'patterns': [
         #   {
@@ -279,8 +291,9 @@
         # ]
       }
       {
-        'begin': '\''
-        'end': '\''
+        # 'begin': '\''
+        # 'end': '\''
+        'match': '\'.*\''
         'name': 'string.quoted.single.gle'
         # 'patterns': [
         #   {
