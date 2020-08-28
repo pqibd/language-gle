@@ -1,6 +1,6 @@
 # language-gle package
 
-![image-20200827180217701](figures/README/image-20200827180217701.png)
+<img src="figures/README/image-20200827231243484.png" alt="image-20200827231243484" style="zoom:70%;" />
 
 ## Tips
 
