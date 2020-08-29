@@ -1,0 +1,58 @@
+'.source.gle':
+# Graphics primitives
+  'begin':
+    'prefix': "begin"
+    'body': "begin ${1:blockname}\n\t${2:}\nend ${1:blockname}\n"
+  'begin box':
+    'prefix': 'begin box'
+    'body': "begin box ${1:}\nend box"
+  'begin clip':
+    'prefix': 'begin clip'
+    'body': "begin clip ${1:}\nend clip"
+  'begin length':
+    'prefix': 'begin length'
+    'body': "begin length ${1:}\nend length"
+  'begin name':
+    'prefix': 'begin name'
+    'body': "begin name ${1:}\nend name"
+  'begin object':
+    'prefix': 'begin object'
+    'body': "begin object ${1:}\nend object"
+  'begin origin':
+    'prefix': 'begin origin'
+    'body': "begin origin ${1:}\nend origin"
+  'begin path':
+    'prefix': 'begin path'
+    'body': "begin path ${1:}\nend path"
+  'begin rotate':
+    'prefix': 'begin rotate'
+    'body': "begin rotate ${1:}\nend rotate"
+  'begin scale':
+    'prefix': 'begin scale'
+    'body': "begin scale ${1:}\nend scale"
+  'begin table':
+    'prefix': 'begin table'
+    'body': "begin table ${1:}\nend table"
+  'begin text':
+    'prefix': 'begin text'
+    'body': "begin text ${1:}\nend text"
+  'begin translate':
+    'prefix': 'begin translate'
+    'body': "begin translate ${1:}\nend translate"
+  'for loop':
+    'prefix': "fornext"
+    'body': "for ${1:var}=${2:value} to ${3:value} step ${4:value}\nnext ${1:var}"
+  'if else':
+    'prefix': "ifelse"
+    'body': "if ${1:condition} then\n\t${2:}\nelse\n\t${3:}\nend if\n"
+  'subroutine':
+    'prefix': "sub"
+    'body': "sub ${1:name}\nend sub"
+# Graph
+  'begin graph':
+    'prefix': "begin graph"
+    'body': "begin graph\n\t${1:}\nend graph"
+  'begin layer':
+    'prefix': "begin layer"
+    'body': "begin layer\n\t${1:}\nend layer"
+      
