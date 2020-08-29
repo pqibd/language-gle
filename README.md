@@ -1,6 +1,6 @@
 # language-gle package
 
-<img src="figures/README/image-20200827231243484.png" alt="image-20200827231243484"/>
+![image](figures/README/image-20200827231243484.png)
 
 ## Tips
 
