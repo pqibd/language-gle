@@ -1,8 +1,8 @@
 '.source.gle':
 # Graphics primitives
-  'begin':
-    'prefix': "begin"
-    'body': "begin ${1:blockname}\n\t${2:}\nend ${1:blockname}\n"
+  # 'begin':
+  #   'prefix': "begin"
+  #   'body': "begin ${1:blockname}\n\t${2:}\nend ${1:blockname}\n"
   'begin box':
     'prefix': 'begin box'
     'body': "begin box ${1:}\nend box"
@@ -55,4 +55,3 @@
   'begin layer':
     'prefix': "begin layer"
     'body': "begin layer\n\t${1:}\nend layer"
-      
