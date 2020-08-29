@@ -3,7 +3,7 @@
   'gle',
   'icl'
 ]
-'name': 'gle-Script'
+'name': 'GLE'
 'firstLineMatch': '#!.*\\b(gle)\\b'
 # todo: 1. Add TODO grammar
 #       2. Make begin/end special
@@ -131,7 +131,7 @@
         'name': 'keyword.control.gle'
       }
     ]
-  'keyword_control2':  # more strict for some control keywords, because they are keywords for other purposes too. 
+  'keyword_control2':  # more strict for some control keywords, because they are keywords for other purposes too.
     'patterns': [
       {
         'match': '^\\s*\\b(both|end|start)\\b'
