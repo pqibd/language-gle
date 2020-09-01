@@ -6,16 +6,13 @@
 'name': 'GLE'
 'firstLineMatch': '#!.*\\b(gle)\\b'
 # todo: 1. Add TODO grammar
-#       2. Make begin/end special
 #       3. Maybe change the color for 'keyword_command'
 #       4. Code folding
 #       5. Parenteses pairing? Maybe not necessary
 #       6. Clean garbage
-#       7. '\' in string
 #       8. Variable highlight in subroutine definition line.
 #       9. Add `d1`
 #       10. Add some missing operators
-#       11. 'box', 'start', 'end'
 'patterns': [
   {
     'include': '#line_comment'
@@ -34,6 +31,9 @@
   }
   {
     'include': '#constant_language'
+  }
+  {
+    'include': '#constant_parameter'
   }
   {
     'include': '#keyword_control'
@@ -127,7 +127,7 @@
   'keyword_control':
     'patterns': [
       {
-        'match': '\\b(begin|bigfile|data|define|else|if|include|for|fullsize|let|next|postscript|return|set|to|then|while)\\b'
+        'match': '\\b(begin|bigfile|data|define|else|if|include|for|fullsize|let|next|postscript|print|return|set|to|then|while)\\b'
         'name': 'keyword.control.gle'
       }
     ]
@@ -141,7 +141,7 @@
   'keyword_command':
     'patterns': [
       {
-        'match':'\\b(aline|rline|line|amove|rmove|arc|arcto|bezier|box|circle|closepath|curve|ellipse|ellipse_arc|ellipse_narc|grestore|gsave|join|rbezier|reverse|save|text|write|bar|size|title|xaxis|yaxis|x2axis|y2axis|hscale|vscale|xlabels|ylabels|x2labels|y2labels|xnames|ynames|x2names|y2names|xplaces|yplaces|x2places|y2places|xside|yside|x2side|y2side|xticks|yticks|xsubticks|ysubticks|x2subticks|y2subticks|xtitle|ytitle|x2title|y2title)\\b'
+        'match':'\\b(aline|rline|line|amove|rmove|arc|arcto|bezier|bimap|bitmap_info|box|circle|closepath|colormap|curve|define\\smarker|define|draw|ellipse|ellipse_arc|ellipse_narc|grestore|gsave|join|local|margins|marker|orientation|papersize|psbbtweak|pscomment|rbezier|reverse|save|tex|text|write|bar|size|title|xaxis|yaxis|x2axis|y2axis|hscale|vscale|xlabels|ylabels|x2labels|y2labels|xnames|ynames|x2names|y2names|xplaces|yplaces|x2places|y2places|xside|yside|x2side|y2side|xticks|yticks|xsubticks|ysubticks|x2subticks|y2subticks|xtitle|ytitle|x2title|y2title)\\b'
         'name': 'support.class.gle'
       }
     ]
@@ -155,7 +155,7 @@
   'keyword_blockname':
     'patterns': [
       {
-        'match':'\\s\\b(box|clip|origin|path|marker|rotate|scale|table|text|translate)\\b'
+        'match':'\\s\\b(box|clip|length|name|object|origin|path|rotate|scale|table|text|translate)\\b'
         'name': 'support.function.section.gle'
       }
     ]
@@ -201,7 +201,9 @@
   'function_definition':
     'patterns': [
       {
-        'begin': '^(sub)\\s+([[:alnum:]]+)(\\s+[[:alnum:]]+)*?'
+        # 'begin': '^\\s*(sub)\\s+([[:alnum:]]+)(\\s+[[:alnum:]]+)*'
+        # 'begin': '^\\s*(sub)\\s+([[:alnum:]]+)(\\s+.*)\\s*$'
+        'begin': '^\\s*(sub)\\s+(\\S+)(\\s+.*)\\s*(?:\\!\\s*)*$'
         'beginCaptures':
           '1':
             'name': 'storage.type.function.gle'
@@ -209,9 +211,14 @@
             'name': 'entity.name.function.gle'
           '3':
             'name': 'variable.parameter.gle'
-        'end': 'end sub'
+            'patterns': [
+              {
+                'include': '#line_comment'
+              }
+            ]
+        'end': '^\\s*(end\\s+sub)\\s*$'
         'endCaptures':
-          '0':
+          '1':
             'name': 'storage.type.function.gle'
         'name': 'meta.function.gle'
         'patterns': [
@@ -245,11 +252,11 @@
         'name': 'keyword.operator.assignment.gle'
       }
     ]
-  'constant_language':
+  'constant_parameter':
     'patterns': [
       {
         'match': "\\b(butt|round|square|mitre|bevel|left|center|right|[tcblr]{2}|on|off|grid|log|nofirst|nolast)\\b"
-        'name': 'constant.language.gle'
+        'name': 'variable.parameter.function.gle'
       }
     ]
   'variable':
@@ -274,6 +281,10 @@
       {
         'match': '\\b([[:digit:]]+)(\.[[:digit:]]+)*'
         'name': 'constant.numeric.gle'
+      }
+      {
+        'match': "\\b(pi)\\b"
+        'name': 'constant.character.gle'
       }
     ]
   'string':
@@ -331,17 +342,6 @@
       {
         'name': 'constant.numeric.gle'
         'match': '\\\\[[:digit:]]{1,3}|\\\\x[0-9a-fA-F]{2}'
-      }
-    ]
-  'character_classes':
-    'patterns': [
-      {
-        'match': '\\[:(alnum|alpha|blank|cntrl|digit|graph|lower|print|punct|space|upper|xdigit):\\]'
-        'name': 'support.class.gle'
-      }
-      {
-        'match': '(\\\\[BsSwWy<>\'`])'
-        'name': 'support.class.other.gle'
       }
     ]
   'debug_output':
