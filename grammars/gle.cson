@@ -66,6 +66,9 @@
     'include': '#variable'
   }
   {
+    'include': '#latex'
+  }
+  {
     'match': '\\b(&&|\\|\\|)\\b'
     'name': 'keyword.operator.gle'
   }
@@ -141,8 +144,11 @@
   'keyword_command':
     'patterns': [
       {
-        'match':'\\b(aline|rline|line|amove|rmove|arc|arcto|bezier|bimap|bitmap_info|box|circle|closepath|colormap|curve|define\\smarker|define|draw|ellipse|ellipse_arc|ellipse_narc|grestore|gsave|join|local|margins|marker|orientation|papersize|psbbtweak|pscomment|rbezier|reverse|save|tex|text|write|bar|size|title|xaxis|yaxis|x2axis|y2axis|hscale|vscale|xlabels|ylabels|x2labels|y2labels|xnames|ynames|x2names|y2names|xplaces|yplaces|x2places|y2places|xside|yside|x2side|y2side|xticks|yticks|xsubticks|ysubticks|x2subticks|y2subticks|xtitle|ytitle|x2title|y2title)\\b'
-        'name': 'support.class.gle'
+        'match':'(?:\\s|^|;)\\b((aline|rline|line|amove|rmove|arc|arcto|bezier|bimap|bitmap_info|box|circle|closepath|colormap|curve|define\\smarker|define|draw|ellipse|ellipse_arc|ellipse_narc|grestore|gsave|join|local|margins|marker|orientation|papersize|psbbtweak|pscomment|rbezier|reverse|save|tex|text|write|bar|size|title|xaxis|yaxis|x2axis|y2axis|hscale|vscale|xlabels|ylabels|x2labels|y2labels|xnames|ynames|x2names|y2names|xplaces|yplaces|x2places|y2places|xside|yside|x2side|y2side|xticks|yticks|xsubticks|ysubticks|x2subticks|y2subticks|xtitle|ytitle|x2title|y2title))\\b'
+        # 'name': 'support.class.gle'
+        'captures':
+          '1':
+            'name': 'support.class.gle'
       }
     ]
   'keyword_option':
@@ -155,7 +161,7 @@
   'keyword_blockname':
     'patterns': [
       {
-        'match':'\\s\\b(box|clip|length|name|object|origin|path|rotate|scale|table|text|translate)\\b'
+        'match':'\\b(box|clip|length|name|object|origin|path|rotate|scale|table|tex|texpreamble|text|translate)\\b'
         'name': 'support.function.section.gle'
       }
     ]
@@ -292,58 +298,108 @@
       {
         # 'begin': '"'
         # 'end': '"'
-        'match': '".*"'
+        'match': '"(.*)"'
         'name': 'string.quoted.double.gle'
-        # 'patterns': [
-        #   {
-        #     'match': '\\\\.'
-        #     'name': 'constant.character.escape.gle'
-        #   }
-        # ]
+        'captures':
+          '1':
+            'patterns': [
+              {
+               'include': 'text.tex.latex'
+              }
+            ]
       }
       {
         # 'begin': '\''
         # 'end': '\''
-        'match': '\'.*\''
+        'match': '\'(.*)\''
         'name': 'string.quoted.single.gle'
-        # 'patterns': [
-        #   {
-        #     'match': '\\\\.'
-        #     'name': 'constant.character.escape.gle'
-        #   }
-        # ]
+        'captures':
+          '1':
+            'patterns': [
+              {
+               'include': 'text.tex.latex'
+              }
+            ]
       }
     ]
-  'regexp_specialcharacters':
+  'latex':
     'patterns': [
       {
-        'name': 'keyword.other.gle'
-        'match': '\\^|\\.|\\+|\\*|\\?|\\$|\\\\[abfnrtv]|\\\\"'
+        # 'match': '(tex)\\s+a(.*)a'
+        # 'name': 'meta.embeded.gle'
+        'match': '(\\\\tex\\{(.*)\\})'
+        # 'match': 'good(.*)'
+        # 'patterns': [
+        #   {
+        #     'include': 'text.tex.latex'
+        #   }
+        # ]
+        'captures':
+          '1':
+            'patterns': [
+              {
+               'include': 'text.tex.latex'
+              }
+            ]
+          '2':
+            'patterns': [
+              {
+                'include': 'text.tex.latex'
+              }
+            ]
       }
       {
-        'name': 'keyword.other.gle'
-        'begin': '(\\[|\\{)'
-        'beginCaptures':
-          '1':
-            'name': 'punctuation.keyword.other.begin.gle'
-        'end': '(\\]|\\})'
-        'endCaptures':
-          '1':
-            'name': 'punctuation.keyword.other.end.gle'
-        'patterns': [
+        # 'name': 'meta.function.environment.gle'
+        'begin': '^\\s*begin\\s+good\\s*$'
+        # 'beginCaptures':
+        #   '0':
+        #     'patterns':[
+        #       {'include': '$self'}
+        #     ]
+        'end': '^\\s*end\\s+good\\s*$'
+        # 'endCaptures':
+        #   '0':
+        #     'patterns':[
+        #       {'include': '$self'}
+        #     ]
+        # 'contentName': 'variable.parameter.gle'
+        'patterns':[
           {
-            'include': '#character_classes'
-          }
-          {
-            'include': '#numeric'
+            'include': 'text.tex.latex'
           }
         ]
       }
-      {
-        'name': 'constant.numeric.gle'
-        'match': '\\\\[[:digit:]]{1,3}|\\\\x[0-9a-fA-F]{2}'
-      }
     ]
+  # 'regexp_specialcharacters':
+  #   'patterns': [
+  #     {
+  #       'name': 'keyword.other.gle'
+  #       'match': '\\^|\\.|\\+|\\*|\\?|\\$|\\\\[abfnrtv]|\\\\"'
+  #     }
+  #     {
+  #       'name': 'keyword.other.gle'
+  #       'begin': '(\\[|\\{)'
+  #       'beginCaptures':
+  #         '1':
+  #           'name': 'punctuation.keyword.other.begin.gle'
+  #       'end': '(\\]|\\})'
+  #       'endCaptures':
+  #         '1':
+  #           'name': 'punctuation.keyword.other.end.gle'
+  #       'patterns': [
+  #         {
+  #           'include': '#character_classes'
+  #         }
+  #         {
+  #           'include': '#numeric'
+  #         }
+  #       ]
+  #     }
+  #     {
+  #       'name': 'constant.numeric.gle'
+  #       'match': '\\\\[[:digit:]]{1,3}|\\\\x[0-9a-fA-F]{2}'
+  #     }
+  #   ]
   'debug_output':
     'patterns': [
       {

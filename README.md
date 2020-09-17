@@ -8,13 +8,12 @@ The recommended syntax theme to use with GLE package is [Monokai](https://atom.i
 
 ## TODO
 
-- Add TODO grammar
-- Make `begin`/`end` special
+- Add TODO grammar, LaTeX grammar.
 - Code folding
 - Parentheses pairing
 - Clean garbage
 - Variable highlight in subroutine definition line.
 - Add `d1`
 - Add some missing operators
--  `start`, `end`
 - Add what’s left in graphics primitives to `keyword_command`.
+- Greek like commands. *Manual* page 12. 

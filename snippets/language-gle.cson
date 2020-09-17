@@ -33,6 +33,9 @@
   'begin table':
     'prefix': 'begin table'
     'body': "begin table ${1:}\nend table"
+  'begin tex':
+    'prefix': "begin tex"
+    'body': "begin tex ${1:}\nend tex"
   'begin text':
     'prefix': 'begin text'
     'body': "begin text ${1:}\nend text"
