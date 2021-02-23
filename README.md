@@ -1,6 +1,6 @@
 # language-gle package
 
-![image](figures/README/image-20200827231243484.png)
+![image](https://github.com/darwinqii/language-gle/blob/master/figures/README/image-20200827231243484.png)
 
 ## Tips
 
