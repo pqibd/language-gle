@@ -10,7 +10,6 @@
 #       4. Code folding
 #       5. Parenteses pairing? Maybe not necessary
 #       6. Clean garbage
-#       8. Variable highlight in subroutine definition line.
 #       9. Add `d1`
 #       10. Add some missing operators
 'patterns': [
