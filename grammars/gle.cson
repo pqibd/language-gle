@@ -466,10 +466,3 @@
         # 'contentName': 'meta.function-call.arguments.gle'
       }
     ]
-  'function_names':
-    'patterns': [
-      {
-        'match': '[a-zA-Z_][a-zA-Z0-9_]*'
-        'name': 'entity.name.function.gle'
-      }
-    ]
