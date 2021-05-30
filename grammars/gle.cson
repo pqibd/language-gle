@@ -27,13 +27,16 @@
     'include': '#function_definition'
   }
   {
+    'include': '#function_calls'
+  }
+  {
     'include': '#variable_language'
   }
   {
-    'include': '#constant_language'
+    'include': '#constant_parameter'
   }
   {
-    'include': '#constant_parameter'
+    'include': '#constant_language'
   }
   {
     'include': '#keyword_control'
@@ -44,9 +47,9 @@
   {
     'include': '#keyword_command'
   }
-  {
-    'include': '#keyword_option'
-  }
+  # {
+  #   'include': '#keyword_option'
+  # }
   {
     'include': '#keyword_blockname'
   }
@@ -130,39 +133,57 @@
   'keyword_control':
     'patterns': [
       {
-        'match': '\\b(begin|bigfile|data|define|else|if|include|for|fullsize|let|next|postscript|print|return|set|to|then|while)\\b'
-        'name': 'keyword.control.gle'
+        'match': '\\b(bigfile|data|default|define|else|if|include|fopen|fclose|fread|freadln|fwrite|fwriteln|ftokenizer|for|fullsize|let|next|postscript|print|return|set|to|then|while)\\b(.*)(?:;|$)'
+        'captures':
+          '1':
+            'name': 'keyword.control.gle'
+          '2':
+            'patterns': [
+              {
+                'include': '#keyword_option'
+              }
+            ]
       }
     ]
   'keyword_control2':  # more strict for some control keywords, because they are keywords for other purposes too.
     'patterns': [
       {
-        'match': '^\\s*\\b(both|end|start)\\b'
+        'match': '^\\s*\\b(both|start)\\b'
         'name': 'keyword.control.gle'
       }
     ]
   'keyword_command':
     'patterns': [
       {
-        'match':'(?:\\s|^|;)\\b((aline|rline|line|amove|rmove|arc|arcto|bezier|bimap|bitmap_info|box|circle|closepath|colormap|curve|define\\smarker|define|draw|ellipse|ellipse_arc|ellipse_narc|grestore|gsave|join|local|margins|marker|orientation|papersize|psbbtweak|pscomment|rbezier|reverse|save|tex|text|write|bar|size|title|xaxis|yaxis|x2axis|y2axis|hscale|vscale|xlabels|ylabels|x2labels|y2labels|xnames|ynames|x2names|y2names|xplaces|yplaces|x2places|y2places|xside|yside|x2side|y2side|xticks|yticks|xsubticks|ysubticks|x2subticks|y2subticks|xtitle|ytitle|x2title|y2title))\\b'
+        'match':'(?:\\s|^|;)\\b(aline|rline|line|amove|rmove|arc|arcto|bezier|bimap|bitmap_info|box|circle|closepath|colormap|curve|define\\smarker|define|draw|ellipse|ellipse_arc|ellipse_narc|grestore|gsave|join|local|margins|marker|orientation|papersize|psbbtweak|pscomment|rbezier|reverse|save|tex|text|write|bar|size|title|xaxis|yaxis|x2axis|y2axis|hscale|vscale|xlabels|ylabels|x2labels|y2labels|xnames|ynames|x2names|y2names|xplaces|yplaces|x2places|y2places|xside|yside|x2side|y2side|xticks|yticks|xsubticks|ysubticks|x2subticks|y2subticks|xtitle|ytitle|x2title|y2title)\\b(.*)(?:;|$)'
         # 'name': 'support.class.gle'
         'captures':
           '1':
-            'name': 'support.class.gle'
+            'name': 'support.function.gle'
+          '2':
+            'patterns': [
+              {
+                'include': '#keyword_option'
+              }
+            ]
       }
     ]
   'keyword_option':
     'patterns': [
       {
         'match':'\\s(width|err|herr|errwidth|herrwidth|errup|herrup|errdown|herrdown|hei|color|dashlen|font|fontlwidth|just|add|nobox|name|arrow|stroke|fill|justify|cap|lstyle|lwidth|from|dist|key|xmin|ymin|xmax|ymax|nomiss|smooth|smoothm|dsubticks|dpoints|nticks|dticks|font|shift|step|offset|position|marker|msize|mscale|ignore|alabeldist|alabelscale|arrowangle|arrowsize|arrowstyle|atitledist|atitlescale|background|cap|pattern|texscale|titlescale|ticksscale)\\s'
-        'name': 'variable.parameter.function.gle'
+        'name': 'support.variable.gle'
       }
     ]
   'keyword_blockname':
     'patterns': [
       {
-        'match':'\\b(box|clip|length|name|object|origin|path|rotate|scale|table|tex|texpreamble|text|translate)\\b'
-        'name': 'support.function.section.gle'
+        'match':'(begin|end)\\s+(box|clip|length|name|object|origin|path|rotate|scale|table|tex|texpreamble|text|translate)\\b'
+        'captures':
+          '1':
+            'name': 'keyword.control.gle'
+          '2':
+            'name': 'entity.name.section.gle'
       }
     ]
   'regexp':
@@ -265,6 +286,13 @@
         'name': 'variable.parameter.function.gle'
       }
     ]
+  'constant_language':
+    'patterns': [
+      {
+        'match': "\\b(true|false)\\b"
+        'name': 'constant.language.gle'
+      }
+    ]
   'variable':
     'patterns': [
       {
@@ -290,7 +318,11 @@
       }
       {
         'match': "\\b(pi)\\b"
-        'name': 'constant.character.gle'
+        'name': 'constant.numeric.gle'
+      }
+      {
+        'match': "\\b(true|false)\\b"
+        'name': 'constant.language.gle'
       }
     ]
   'string':
@@ -418,3 +450,26 @@
             'name': 'variable.other.gle'
       }
    ]
+  'function_calls':
+    'patterns': [
+      {
+        'name': 'meta.function-call.gle'
+        'match': '^\\s*(@[A-Za-z_][A-Za-z0-9_]*)(?:\\s+|$|;)[^=]'
+        'captures':
+          '1':
+            'name': 'entity.name.function.gle'
+            'patterns': [
+              {
+                'include': '$self'
+              }
+            ]
+        # 'contentName': 'meta.function-call.arguments.gle'
+      }
+    ]
+  'function_names':
+    'patterns': [
+      {
+        'match': '[a-zA-Z_][a-zA-Z0-9_]*'
+        'name': 'entity.name.function.gle'
+      }
+    ]
