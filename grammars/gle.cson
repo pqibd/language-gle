@@ -164,7 +164,7 @@
   'keyword_command':
     'patterns': [
       {
-        'match':'(?:\\s|^|;)\\b(aline|rline|line|amove|rmove|arc|arcto|bezier|bimap|bitmap_info|box|circle|closepath|colormap|curve|define\\smarker|define|draw|ellipse|ellipse_arc|ellipse_narc|grestore|gsave|join|local|margins|marker|orientation|papersize|psbbtweak|pscomment|rbezier|reverse|save|tex|text|write|bar|size|title|xaxis|yaxis|x2axis|y2axis|hscale|vscale|xlabels|ylabels|x2labels|y2labels|xnames|ynames|x2names|y2names|xplaces|yplaces|x2places|y2places|xside|yside|x2side|y2side|xticks|yticks|xsubticks|ysubticks|x2subticks|y2subticks|xtitle|ytitle|x2title|y2title)\\b(.*)(?:;|$)'
+        'match':'(?:\\s|^|;)\\b(aline|rline|line|amove|rmove|arc|arcto|bezier|bimap|bitmap_info|box|circle|closepath|colormap|curve|define\\smarker|define|ellipse|ellipse_arc|ellipse_narc|grestore|gsave|join|local|margins|marker|orientation|papersize|psbbtweak|pscomment|rbezier|reverse|save|tex|text|write|bar|size|title|xaxis|yaxis|x2axis|y2axis|hscale|vscale|xlabels|ylabels|x2labels|y2labels|xnames|ynames|x2names|y2names|xplaces|yplaces|x2places|y2places|xside|yside|x2side|y2side|xticks|yticks|xsubticks|ysubticks|x2subticks|y2subticks|xtitle|ytitle|x2title|y2title)\\b(.*)(?:;|$)'
         # 'name': 'support.class.gle'
         'captures':
           '1':
@@ -179,6 +179,24 @@
               }
             ]
       }
+      {
+        'match':'(?:\\s|^|;)\\b(draw)\\s+([A-Za-z_][A-Za-z0-9_]*)\\b(.*)(?:;|$)'
+        'captures':
+          '1':
+            'name': 'support.function.gle'
+          '2':
+            'name': 'entity.name.function.gle'
+          '3':
+            'patterns': [
+              {
+                'include': '#keyword_option'
+              }
+              {
+                'include': '$self'
+              }
+            ]
+      }
+
     ]
   'keyword_option':
     'patterns': [
