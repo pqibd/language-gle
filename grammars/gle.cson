@@ -157,7 +157,8 @@
   'keyword_control2':  # more strict for some control keywords, because they are keywords for other purposes too.
     'patterns': [
       {
-        'match': '(?:;|^)\\s*\\b(both|start|end)\\b'
+        # 'match': '(?:;|^)\\s*\\b(both|start|end)\\b'
+        'match': 'arrow\\s*\\b(both|start|end)\\b'
         'name': 'keyword.control.gle'
       }
     ]
